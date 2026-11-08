@@ -1,0 +1,13 @@
+services:
+  sim:
+    build: .
+    image: maze-robot-sim
+    init: true
+    ipc: host
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    environment:
+      DISPLAY: ${DISPLAY:-:0}
+    volumes:
+      - .:/work
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    working_dir: /work
